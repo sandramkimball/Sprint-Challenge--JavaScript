@@ -8,15 +8,14 @@
 */
 
 function consume(a, b, cb){
- return cb(a + b)
+ return cb(a, b)
 }
 
-// function consume2(callback){
-//   // const cb = 'idk';
-//   console.log(callback(callback));
-// };
+const eat = (a, b) => {
+  return `I consume ${a} and you consume ${b}.`
+}
 
-// consume2(consume('apple', 'banana'));
+console.log(consume('apple', 'banana', eat));
 
 
 /* Step 2: Create several functions to callback with consume();
@@ -40,8 +39,8 @@ const greeting = (firstName, lastName) => {
   return `Hello ${firstName} ${lastName}, nice to meet you!`;
 }
 
-console.log(consumeMath(2, 3, add));
-console.log(consumeMath(2, 5, multiply));
+console.log(consumeMath(2, 3, add)); // 5
+console.log(consumeMath(2, 5, multiply)); // 10
 console.log(consumeMath('Billy', 'Bob', greeting));
 
 console.log(consume(2, 2, add)); // 4
