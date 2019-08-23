@@ -7,15 +7,16 @@
   * The consume function should return the invocation of cb, passing a and b into cb as arguments
 */
 
-function consume(a, b, callback){
-  console.log(`I comsume ${a} and you consume ${b}.`);
-  callback();
+function consume(a, b, cb){
+ return cb(a + b)
 }
 
+// function consume2(callback){
+//   // const cb = 'idk';
+//   console.log(callback(callback));
+// };
 
-consume('a', 'b', function cb(){
-  console.log('idk')
-});
+// consume2(consume('apple', 'banana'));
 
 
 /* Step 2: Create several functions to callback with consume();
@@ -23,33 +24,37 @@ consume('a', 'b', function cb(){
   * Create a function named multiply that returns the product of two numbers 
   * Create a function named greeting that accepts a first and last name and returns "Hello first-name last-name, nice to meet you!"
 */
-function add(num1, num2, cb){
+function consumeMath(num1, num2, cb){
+  return cb(num1, num2);
+}
+
+const add = (num1, num2) => {
   return num1 + num2;
 }
 
-consume(add, cb());
-
-function multiply(num1, num2, cb){
+const multiply = (num1, num2) => {
   return num1 * num2;
 }
 
-function greeting(firstName, lastName, cb){
+const greeting = (firstName, lastName) => {
   return `Hello ${firstName} ${lastName}, nice to meet you!`;
 }
 
+console.log(consumeMath(2, 3, add));
+console.log(consumeMath(2, 5, multiply));
+console.log(consumeMath('Billy', 'Bob', greeting));
 
-/* Step 3: Check your work by un-commenting the following calls to consume(): */
-// console.log(consume(2, 2, add)); // 4
-// console.log(consume(10, 16, multiply)); // 160
-// console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
+console.log(consume(2, 2, add)); // 4
+console.log(consume(10, 16, multiply)); // 160
+console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
 
 
 // ==== Closures ==== 
 
-// Explain in your own words why nestedfunction can access the variable internal.
+/* Explain in your own words why nestedfunction can access the variable internal:
 
-// Explanation: 
-
+  -Nested objects can only inherit upwards/outwards because of the function scope.
+*/
 
 const external = "I'm outside the function";
 
